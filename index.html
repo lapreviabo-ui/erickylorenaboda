@@ -18,7 +18,7 @@
     overflow-x: hidden;
   }
 
-  /* PANTALLA DE INICIO (PORTADA) */
+  /* PANTALLA DE INICIO (PORTADA AJUSTADA) */
   #introScreen {
     position: fixed;
     inset: 0;
@@ -27,12 +27,11 @@
     background: url('portada.png') center/cover no-repeat;
     z-index: 9999;
     transition: opacity 0.8s ease;
-    /* Se quitó el flexbox para poder ubicar los elementos manualmente */
   }
 
   #introScreen h1 {
     position: absolute;
-    top: 46%; /* Ubicado justo debajo de los nombres */
+    top: 46%; 
     left: 50%;
     transform: translate(-50%, -50%);
     color: black;
@@ -44,7 +43,7 @@
 
   #ingresarBtn {
     position: absolute;
-    top: 53.5%; /* Ubicado justo encima de la franja guinda */
+    top: 53.5%; 
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 14px 32px;
@@ -57,7 +56,6 @@
     animation: pulse 2s infinite ease-in-out;
   }
 
-  /* Se ajustó la animación para que mantenga el centrado absoluto */
   @keyframes pulse {
     0% { transform: translate(-50%, -50%) scale(1); }
     50% { transform: translate(-50%, -50%) scale(1.06); }
@@ -79,12 +77,12 @@
     display: block;
   }
 
-  /* BOTONES (Color rojo temporal para calibrar) */
+  /* BOTONES (Color rojo temporal para verificar las posiciones) */
   .button {
     position: absolute;
     transform: translateX(-50%);
     cursor: pointer;
-    background-color: rgba(255, 0, 0, 0.4); /* CAMBIA ESTO A transparent CUANDO TERMINES */
+    background-color: rgba(255, 0, 0, 0.4); /* CAMBIA ESTO A transparent CUANDO VERIFIQUES */
     border-radius: 8px;
     z-index: 10;
   }
@@ -152,23 +150,27 @@
 <div class="container" id="content" style="display:none;">
   <img src="boda.png" alt="Invitación Erick y Lorena">
   
-  <!-- BOTONES -->
+  <!-- BOTONES CALCULADOS PARA LA IMAGEN DE ERICK Y LORENA -->
   
-  <!-- 1. Ceremonia Religiosa -->
-  <div class="button" style="top:54.6%; left:50%; width:45%; height:1.6%;" 
-       onclick="window.open('https://maps.app.goo.gl/nqKPxbnzh6HYbzx87?g_st=ac')"></div>
+  <!-- 1. Ceremonia Religiosa (Botón Ver Mapa) -->
+  <div class="button" style="top:48.2%; left:50%; width:45%; height:1.6%;" 
+       onclick="window.open('AQUI_TU_LINK_MAPA_CEREMONIA')"></div>
 
-  <!-- 2. Recepción Social -->
-  <div class="button" style="top:60.5%; left:50%; width:45%; height:1.6%;" 
-       onclick="window.open('https://maps.app.goo.gl/DuaEr2rcxSi4ebDC6?g_st=ac')"></div>
+  <!-- 2. Recepción Social (Botón Ver Mapa) -->
+  <div class="button" style="top:53.2%; left:50%; width:45%; height:1.6%;" 
+       onclick="window.open('AQUI_TU_LINK_MAPA_RECEPCION')"></div>
 
-  <!-- 3. Conteo de Regalos (NUEVO BOTÓN) -->
-  <div class="button" style="top:66.2%; left:50%; width:45%; height:1.6%;" 
-       onclick="window.open('https://maps.app.goo.gl/WpCnL4bzUDW8s4gt5')"></div>
+  <!-- 3. WhatsApp Novio -->
+  <div class="button" style="top:88.5%; left:30%; width:30%; height:3.5%;" 
+       onclick="window.open('https://wa.link/491r8e')"></div>
 
-  <!-- 4. Comparte tus fotos -->
-  <div class="button" style="top:95.3%; left:50%; width:55%; height:1.6%;" 
-       onclick="window.open('https://drive.google.com/drive/folders/1gJgvDXrxrMIhmsh2E-6GglrGDdgDoGdH?usp=sharing')"></div>
+  <!-- 4. WhatsApp Novia -->
+  <div class="button" style="top:88.5%; left:70%; width:30%; height:3.5%;" 
+       onclick="window.open('https://wa.link/1hpku7')"></div>
+
+  <!-- 5. Comparte tus fotos (Botón final de Drive) -->
+  <div class="button" style="top:97.6%; left:50%; width:55%; height:1.5%;" 
+       onclick="window.open('AQUI_TU_LINK_DRIVE_FOTOS')"></div>
 </div>
 
 <!-- AUDIO Y CONTROLES VISUALES -->
