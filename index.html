@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitación - Romer y Olimpia</title>
+<title>Invitación - Erick y Lorena</title>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
@@ -18,34 +18,35 @@
     overflow-x: hidden;
   }
 
-  /* PANTALLA DE INICIO (PORTADA AJUSTADA) */
+  /* PANTALLA DE INICIO (PORTADA) */
   #introScreen {
     position: fixed;
     inset: 0;
     width: 100%;
     min-height: 100%;
     background: url('portada.png') center/cover no-repeat;
-    display: flex;
-    flex-direction: column;
-    /* flex-end empuja los elementos hacia abajo para que no choquen con los nombres */
-    justify-content: flex-end; 
-    align-items: center;
-    /* padding-bottom usa 'vh' (altura de pantalla) para caer siempre en la zona blanca debajo de la franja verde */
-    padding-bottom: 15vh; 
     z-index: 9999;
     transition: opacity 0.8s ease;
+    /* Se quitó el flexbox para poder ubicar los elementos manualmente */
   }
 
   #introScreen h1 {
+    position: absolute;
+    top: 46%; /* Ubicado justo debajo de los nombres */
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: black;
-    font-size: 26px;
-    margin-bottom: 15px;
+    font-size: 28px;
+    margin: 0;
     letter-spacing: 3px;
     text-align: center;
-    text-shadow: 0px 0px 10px rgba(255,255,255,0.8); /* Sombra blanca ligera para máxima legibilidad */
   }
 
   #ingresarBtn {
+    position: absolute;
+    top: 53.5%; /* Ubicado justo encima de la franja guinda */
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 14px 32px;
     background: #d8a1b4;
     border-radius: 50px;
@@ -56,10 +57,11 @@
     animation: pulse 2s infinite ease-in-out;
   }
 
+  /* Se ajustó la animación para que mantenga el centrado absoluto */
   @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-    100% { transform: scale(1); }
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.06); }
+    100% { transform: translate(-50%, -50%) scale(1); }
   }
 
   /* CONTENIDO PRINCIPAL */
@@ -77,12 +79,12 @@
     display: block;
   }
 
-  /* BOTONES TRANSPARENTES (TUS PORCENTAJES INTACTOS) */
+  /* BOTONES (Color rojo temporal para calibrar) */
   .button {
     position: absolute;
     transform: translateX(-50%);
     cursor: pointer;
-    background-color: transparent; 
+    background-color: rgba(255, 0, 0, 0.4); /* CAMBIA ESTO A transparent CUANDO TERMINES */
     border-radius: 8px;
     z-index: 10;
   }
@@ -148,20 +150,24 @@
 
 <!-- CONTENIDO PRINCIPAL -->
 <div class="container" id="content" style="display:none;">
-  <img src="boda.png" alt="Invitación Romer y Olimpia">
+  <img src="boda.png" alt="Invitación Erick y Lorena">
   
-  <!-- BOTONES (COORDENADAS EXACTAS QUE TÚ CALIBRASTE) -->
+  <!-- BOTONES -->
   
   <!-- 1. Ceremonia Religiosa -->
-  <div class="button" style="top:53.5%; left:50%; width:45%; height:1.8%;" 
+  <div class="button" style="top:54.6%; left:50%; width:45%; height:1.6%;" 
        onclick="window.open('https://maps.app.goo.gl/nqKPxbnzh6HYbzx87?g_st=ac')"></div>
 
   <!-- 2. Recepción Social -->
-  <div class="button" style="top:59.5%; left:50%; width:45%; height:1.8%;" 
+  <div class="button" style="top:60.5%; left:50%; width:45%; height:1.6%;" 
        onclick="window.open('https://maps.app.goo.gl/DuaEr2rcxSi4ebDC6?g_st=ac')"></div>
 
-  <!-- 3. Comparte tus fotos -->
-  <div class="button" style="top:88.2%; left:50%; width:55%; height:1.8%;" 
+  <!-- 3. Conteo de Regalos (NUEVO BOTÓN) -->
+  <div class="button" style="top:66.2%; left:50%; width:45%; height:1.6%;" 
+       onclick="window.open('https://maps.app.goo.gl/WpCnL4bzUDW8s4gt5')"></div>
+
+  <!-- 4. Comparte tus fotos -->
+  <div class="button" style="top:95.3%; left:50%; width:55%; height:1.6%;" 
        onclick="window.open('https://drive.google.com/drive/folders/1gJgvDXrxrMIhmsh2E-6GglrGDdgDoGdH?usp=sharing')"></div>
 </div>
 
