@@ -1,0 +1,253 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación - Romer y Olimpia</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+  /* RESET Y BODY */
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* PANTALLA DE INICIO (PORTADA AJUSTADA) */
+  #introScreen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    min-height: 100%;
+    background: url('portada.png') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    /* flex-end empuja los elementos hacia abajo para que no choquen con los nombres */
+    justify-content: flex-end; 
+    align-items: center;
+    /* padding-bottom usa 'vh' (altura de pantalla) para caer siempre en la zona blanca debajo de la franja verde */
+    padding-bottom: 15vh; 
+    z-index: 9999;
+    transition: opacity 0.8s ease;
+  }
+
+  #introScreen h1 {
+    color: black;
+    font-size: 26px;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    text-align: center;
+    text-shadow: 0px 0px 10px rgba(255,255,255,0.8); /* Sombra blanca ligera para máxima legibilidad */
+  }
+
+  #ingresarBtn {
+    padding: 14px 32px;
+    background: #d8a1b4;
+    border-radius: 50px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    animation: pulse 2s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
+
+  /* CONTENIDO PRINCIPAL */
+  .container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* BOTONES TRANSPARENTES (TUS PORCENTAJES INTACTOS) */
+  .button {
+    position: absolute;
+    transform: translateX(-50%);
+    cursor: pointer;
+    background-color: transparent; 
+    border-radius: 8px;
+    z-index: 10;
+  }
+
+  /* EFECTO INTERACTIVO AL TOCAR/DESLIZAR (Flor verde salvia) */
+  .touch-particle {
+    position: fixed;
+    pointer-events: none; 
+    color: #8F9779; 
+    z-index: 9998;
+    white-space: nowrap;
+    animation: float-fade 1.2s ease-out forwards;
+    transform: translate(-50%, -50%); 
+  }
+
+  @keyframes float-fade {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(0.8); }
+    100% { opacity: 0; transform: translate(-50%, -120px) scale(1.2); }
+  }
+
+  /* ÍCONO Y TEXTO DE MÚSICA */
+  #musicIcon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    z-index: 99999;
+    display: none;
+    animation: spin-slow 8s linear infinite;
+  }
+
+  #musicText {
+    position: fixed;
+    bottom: 85px; 
+    right: 10px;
+    width: 80px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 10px;
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    z-index: 99999;
+    display: none;
+    pointer-events: none; 
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- PANTALLA DE INICIO -->
+<div id="introScreen">
+  <h1>INVITACIÓN</h1>
+  <button id="ingresarBtn">INGRESAR</button>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="container" id="content" style="display:none;">
+  <img src="boda.png" alt="Invitación Romer y Olimpia">
+  
+  <!-- BOTONES (COORDENADAS EXACTAS QUE TÚ CALIBRASTE) -->
+  
+  <!-- 1. Ceremonia Religiosa -->
+  <div class="button" style="top:53.5%; left:50%; width:45%; height:1.8%;" 
+       onclick="window.open('https://maps.app.goo.gl/nqKPxbnzh6HYbzx87?g_st=ac')"></div>
+
+  <!-- 2. Recepción Social -->
+  <div class="button" style="top:59.5%; left:50%; width:45%; height:1.8%;" 
+       onclick="window.open('https://maps.app.goo.gl/DuaEr2rcxSi4ebDC6?g_st=ac')"></div>
+
+  <!-- 3. Comparte tus fotos -->
+  <div class="button" style="top:88.2%; left:50%; width:55%; height:1.8%;" 
+       onclick="window.open('https://drive.google.com/drive/folders/1gJgvDXrxrMIhmsh2E-6GglrGDdgDoGdH?usp=sharing')"></div>
+</div>
+
+<!-- AUDIO Y CONTROLES VISUALES -->
+<audio id="player" loop>
+  <source src="musicaboda.mp3" type="audio/mpeg">
+</audio>
+
+<div id="musicText">Presiona para parar o reproducir la música</div>
+<img id="musicIcon" src="botonmusica.png" alt="Botón Música">
+
+<script>
+const intro = document.getElementById("introScreen");
+const ingresarBtn = document.getElementById("ingresarBtn");
+const content = document.getElementById("content");
+const player = document.getElementById('player');
+const musicIcon = document.getElementById("musicIcon");
+const musicText = document.getElementById("musicText");
+
+let invitationOpened = false;
+let lastSpawnTime = 0;
+
+// FUNCIÓN QUE CREA LA FLOR EN EL DEDO/CURSOR
+function spawnElement(x, y) {
+  if (!invitationOpened) return;
+
+  const now = Date.now();
+  if (now - lastSpawnTime < 150) return; 
+  lastSpawnTime = now;
+
+  let particle = document.createElement("div");
+  particle.className = "touch-particle";
+  
+  particle.innerHTML = "✿";
+
+  let sizeFlower = Math.random() * 25 + 40; 
+  particle.style.fontSize = sizeFlower + "px";
+
+  particle.style.left = x + "px";
+  particle.style.top = y + "px";
+
+  document.body.appendChild(particle);
+
+  setTimeout(() => {
+    particle.remove();
+  }, 1200);
+}
+
+// ESCUCHADORES DE EVENTOS
+window.addEventListener('mousemove', (e) => {
+  spawnElement(e.clientX, e.clientY);
+});
+
+window.addEventListener('touchmove', (e) => {
+  spawnElement(e.touches[0].clientX, e.touches[0].clientY);
+});
+
+// INGRESO A LA INVITACIÓN
+ingresarBtn.addEventListener('click', () => {
+  intro.style.opacity = 0;
+  setTimeout(() => {
+    intro.style.display = "none";
+    content.style.display = "block";
+    
+    invitationOpened = true; 
+    musicIcon.style.display = "block";
+    musicText.style.display = "block"; 
+    player.play().catch(() => console.log("Autoplay bloqueado"));
+  }, 800);
+});
+
+// CONTROL DE AUDIO
+let isPlaying = true;
+musicIcon.addEventListener("click", () => {
+  if (isPlaying) {
+    player.pause();
+    musicIcon.style.animationPlayState = 'paused';
+    musicIcon.style.opacity = 0.5;
+  } else {
+    player.play();
+    musicIcon.style.animationPlayState = 'running';
+    musicIcon.style.opacity = 1;
+  }
+  isPlaying = !isPlaying;
+});
+</script>
+
+</body>
+</html>
